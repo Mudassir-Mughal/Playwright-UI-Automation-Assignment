@@ -1,5 +1,5 @@
 import { Page,expect } from '@playwright/test';
-import { AjaxSubmitFormLocators } from './ajaxSubmitForm.locators';
+import { AjaxSubmitFormLocators } from './AjaxSubmitForm.locators';
 
 export class AjaxSubmitFormActions {
   readonly page: Page;

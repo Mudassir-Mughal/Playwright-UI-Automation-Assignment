@@ -1,5 +1,5 @@
 import { Page, expect } from '@playwright/test';
-import { CheckboxDemoLocators } from './checkboxDemo.locators';
+import { CheckboxDemoLocators } from './CheckboxDemo.locators';
 
 export class CheckboxActions {
   readonly page: Page;

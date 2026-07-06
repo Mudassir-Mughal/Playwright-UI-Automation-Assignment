@@ -1,5 +1,5 @@
 import { expect, Page } from '@playwright/test';
-import { JQueryDropdownLocators } from './jQueryDropdown.locators';
+import { JQueryDropdownLocators } from './JQueryDropdown.locators';
 
 export class JQueryDropdownActions {
 

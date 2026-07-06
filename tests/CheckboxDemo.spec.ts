@@ -20,4 +20,4 @@ await checkbox.verifyMultipleChecked();
 await checkbox.clickCheckAll();
 });
 
-//run all browsers only require improvement in code 
+ 
