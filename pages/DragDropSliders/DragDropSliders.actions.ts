@@ -1,5 +1,5 @@
-import { expect, Page } from '@playwright/test';
-import { SliderLocators } from './dragDropSliders.locators';
+import { expect, Locator, Page } from '@playwright/test';
+import { SliderLocators } from './DragDropSliders.locators';
 
 export class SliderActions {
 
@@ -9,9 +9,11 @@ export class SliderActions {
         this.locator = new SliderLocators(page);
     }
 
-    async moveSlider(index: number, targetValue: number): Promise<void> {
-
-        const slider = this.locator.getSlider(index);
+    private async moveSlider(
+        slider: Locator,
+        output: Locator,
+        targetValue: number
+    ): Promise<void> {
 
         await slider.scrollIntoViewIfNeeded();
 
@@ -21,42 +23,67 @@ export class SliderActions {
             throw new Error('Slider not found');
         }
 
+        const percentage = (targetValue - 1) / 99;
+
+        const startX = box.x + 2;
+        let endX = box.x + (box.width * percentage);
         const y = box.y + box.height / 2;
 
-        let current = Number(await this.locator.getOutput(index).textContent());
+        // Initial drag
+        await this.page.mouse.move(startX, y);
+        await this.page.mouse.down();
+        await this.page.mouse.move(endX, y, { steps: 40 });
+        await this.page.mouse.up();
 
-        let attempts = 0;
+        // Read actual value
+        let actualValue = Number(await output.textContent());
 
-        while (current !== targetValue && attempts < 15) {
+        // Fine adjustment if off by 1
+        while (actualValue !== targetValue) {
 
-            const distance = targetValue - current;
+            if (actualValue < targetValue) {
+                endX += 1;
+            } else {
+                endX -= 1;
+            }
 
-            // Move approximately according to remaining distance
-            const moveBy = distance * (box.width / 100);
-
-            const thumbX =
-                box.x + (current / 100) * box.width;
-
-            await this.page.mouse.move(thumbX, y);
+            await this.page.mouse.move(endX, y);
             await this.page.mouse.down();
-
-            await this.page.mouse.move(
-                thumbX + moveBy,
-                y,
-                { steps: 20 }
-            );
-
+            await this.page.mouse.move(endX, y, { steps: 2 });
             await this.page.mouse.up();
 
-            await this.page.waitForTimeout(200);
+            actualValue = Number(await output.textContent());
 
-            current = Number(await this.locator.getOutput(index).textContent());
-
-            attempts++;
+            // Prevent infinite loop
+            if (Math.abs(actualValue - targetValue) > 5) {
+                break;
+            }
         }
 
-        expect(Math.abs(current - targetValue)).toBeLessThanOrEqual(1);
+        expect(actualValue).toBe(targetValue);
     }
 
+    async moveSlider1(value: number) {
+        await this.moveSlider(
+            this.locator.slider1,
+            this.locator.output1,
+            value
+        );
+    }
 
+    async moveSlider5(value: number) {
+        await this.moveSlider(
+            this.locator.slider5,
+            this.locator.output5,
+            value
+        );
+    }
+
+    async moveSlider8(value: number) {
+        await this.moveSlider(
+            this.locator.slider8,
+            this.locator.output8,
+            value
+        );
+    }
 }

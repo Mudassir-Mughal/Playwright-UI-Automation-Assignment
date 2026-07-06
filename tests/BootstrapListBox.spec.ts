@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { HomePageActions } from "../pages/HomePage/HomePage.actions";
-import { bootstrapDualListDemoActions } from "../pages/BootstrapListBox/BootstrapListBox.actions";
+
 
 test("Bootstrap Dual List Demo", async ({ page }) => {
   const home = new HomePageActions(page);

@@ -1,5 +1,5 @@
 import { expect, Page } from '@playwright/test';
-import { HomePageLocators } from './homePage.locators';
+import { HomePageLocators } from './HomePage.locators';
 
 export class HomePageActions {
     readonly page: Page;
@@ -34,9 +34,10 @@ export class HomePageActions {
     await this.page.waitForLoadState('domcontentloaded');
 }
 
-    async clickDragDropSlidesLink() {
-        await this.locators.dragdropslides.click();
-    }   
+   async clickDragDropSlidesLink() {
+    await this.locators.dragdropslides.click();
+    await this.page.waitForURL(/drag-drop-range-sliders-demo/);
+}  
 
     async clickJavascriptAlertsLink() {
     await this.locators.javascriptalerts.waitFor({ state: 'visible' });
