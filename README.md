@@ -1,115 +1,109 @@
-# UI Training Assignment
+📘 UI Automation Training Project (Playwright + TypeScript)
+📌 Overview
 
-A comprehensive UI/UX training project demonstrating modern web interface design principles and best practices.
+This project is an automated UI testing framework built using Playwright with TypeScript.
+It follows the Page Object Model (POM) design pattern to ensure clean, maintainable, and reusable test code.
 
-## 📋 Project Overview
+🌐 Application Under Test
 
-This project is an educational assignment focused on creating user-friendly interfaces with clean code structure, responsive design, and intuitive user experience.
+https://www.lambdatest.com/selenium-playground/
 
-## 🎯 Objectives
+🎯 Modules Automated
 
-- Learn and implement UI/UX design principles
-- Build responsive and accessible interfaces
-- Practice modern web development techniques
-- Create maintainable and scalable code
+The following features are automated in this project:
 
-## 📁 Project Structure
+Ajax Submit Form
+Bootstrap List Box
+Checkbox Demo
+Drag & Drop Sliders
+JavaScript Alerts
+jQuery Dropdown
+🏗️ Framework Design
 
-```
+This framework follows Page Object Model (POM):
+
+Locators Layer → Stores all element selectors
+Actions Layer → Contains reusable actions/functions
+Tests Layer → Contains test cases and assertions
+
+📁 Project Structure
 UITrainingAssignment/
-├── index.html              # Main HTML entry point
-├── styles/
-│   ├── style.css          # Main stylesheet
-│   └── responsive.css     # Responsive design styles
-├── scripts/
-│   ├── main.js            # Core JavaScript functionality
-│   └── utils.js           # Utility functions
-├── assets/
-│   ├── images/            # Image files
-│   ├── icons/             # Icon assets
-│   └── fonts/             # Custom fonts
-├── components/            # Reusable UI components
-├── pages/                 # Different page sections
-└── README.md             # Project documentation
-```
+│
+├── pages/
+│   ├── HomePage/
+│   │   ├── homePage.locators.ts
+│   │   ├── homePage.actions.ts
+│   │
+│   ├── AjaxSubmitForm/
+│   │   ├── ajaxSubmitForm.locators.ts
+│   │   ├── ajaxSubmitForm.actions.ts
+│   │
+│   ├── BootstrapListBox/
+│   │   ├── bootstrapListBox.locators.ts
+│   │   ├── bootstrapListBox.actions.ts
+│   │
+│   ├── CheckboxDemo/
+│   │   ├── checkboxDemo.locators.ts
+│   │   ├── checkboxDemo.actions.ts
+│   │
+│   ├── DragDropSliders/
+│   │   ├── dragDropSliders.locators.ts
+│   │   ├── dragDropSliders.actions.ts
+│   │
+│   ├── JavaScriptAlerts/
+│   │   ├── javaScriptAlerts.locators.ts
+│   │   ├── javaScriptAlerts.actions.ts
+│   │
+│   ├── jQueryDropdown/
+│   │   ├── jQueryDropdown.locators.ts
+│   │   ├── jQueryDropdown.actions.ts
+│
+├── tests/
+│   ├── ajaxSubmitForm.spec.ts
+│   ├── bootstrapListBox.spec.ts
+│   ├── checkboxDemo.spec.ts
+│   ├── dragDropSliders.spec.ts
+│   ├── javaScriptAlerts.spec.ts
+│   ├── jQueryDropdown.spec.ts
+│
+├── playwright.config.ts
+├── package.json
+├── tsconfig.json
+└── README.md
 
-## 🚀 Getting Started
+⚙️ Installation Steps
+1️⃣ Install dependencies
+npm install
+2️⃣ Install Playwright browsers
+npx playwright install
+3️⃣ Run all tests
+npx playwright test
+4️⃣ Run tests in headed mode
+npx playwright test --headed
+5️⃣ View HTML report
+npx playwright show-report
+🧪 Example Test Flow (Ajax Form)
+Open Home Page
+Click “Ajax Form Submit”
+Enter name and message
+Click Submit
+Verify processing message
+Verify success message
+Verify image appears
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Text editor or IDE (VS Code recommended)
-- Basic knowledge of HTML, CSS, and JavaScript
+🧠 Key Concepts Used
+Page Object Model (POM)
+Locators separation
+Action-based design
+Playwright auto-waiting
+Cross-browser testing
 
-### Installation
+⚠️ Common Issues & Fixes
+Timeout error → Use proper locator wait or Playwright auto-wait
+Empty text issue → Use toContainText() instead of raw text
+Element not found → Verify correct locator strategy
 
-1. Clone or download the project
-2. Navigate to the project folder
-3. Open `index.html` in your web browser
 
-## ✨ Key Features
-
-- **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
-- **Clean Code** - Well-organized and documented source code
-- **Modern UI** - Contemporary design patterns and best practices
-- **Accessibility** - WCAG compliant components
-- **Interactive Elements** - Smooth transitions and user interactions
-
-## 🛠️ Technologies Used
-
-- **HTML5** - Semantic markup
-- **CSS3** - Styling and animations
-- **JavaScript** - Interactivity and functionality
-
-## 📖 Usage
-
-1. Open the main page in your browser
-2. Navigate through different sections
-3. Interact with UI components to test functionality
-4. Review the code structure for learning purposes
-
-## 🎨 Design Principles
-
-- User-centered design
-- Consistency across components
-- Clear visual hierarchy
-- Intuitive navigation
-- Accessibility first
-
-## 📝 File Guide
-
-| File | Purpose |
-|------|---------|
-| `index.html` | Main entry point with page structure |
-| `styles/style.css` | Primary styling |
-| `scripts/main.js` | Main JavaScript logic |
-| `assets/` | Images, icons, and media |
-| `components/` | Reusable UI component templates |
-
-## 🔧 Development Tips
-
-- Keep CSS organized by sections
-- Use semantic HTML tags
-- Write clean, commented JavaScript
-- Test on multiple devices
-- Follow naming conventions
-
-## 📱 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## 📚 Learning Resources
-
-- [MDN Web Docs](https://developer.mozilla.org/)
-- [CSS Tricks](https://css-tricks.com/)
-- [JavaScript.info](https://javascript.info/)
-
-## 📄 License
-
-This project is for educational purposes.
-
----
-
-**Last Updated:** 2024
+👨‍💻 Author
+UI Automation Training Project
+Built using Playwright + TypeScript
