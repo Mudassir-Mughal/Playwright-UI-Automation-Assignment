@@ -2,8 +2,8 @@ import { Page } from "@playwright/test";
 import { JavaScriptAlertsLocators } from "./javaScriptAlerts.locators";
 
 export class JavaScriptAlertsActions {
-  readonly page: Page;
-  readonly locators: JavaScriptAlertsLocators;
+  private readonly page: Page;
+  private readonly locators: JavaScriptAlertsLocators;
 
   constructor(page: Page) {
     this.page = page;

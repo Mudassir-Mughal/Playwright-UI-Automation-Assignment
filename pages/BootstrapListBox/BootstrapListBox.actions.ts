@@ -1,9 +1,9 @@
 import { Page, expect } from "@playwright/test";
 import { BootstrapDualListDemoLocators } from "./BootstrapListBox.locators";
 
-export class bootstrapDualListDemoActions {
-  readonly page: Page;
-  readonly locators: BootstrapDualListDemoLocators;
+export class BootstrapDualListDemoActions {
+  private readonly page: Page;
+  private readonly locators: BootstrapDualListDemoLocators;
 
   constructor(page: Page) {
     this.page = page;

@@ -1,19 +1,20 @@
-import { expect, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 import { JQueryDropdownLocators } from './JQueryDropdown.locators';
+
 
 export class JQueryDropdownActions {
 
-    readonly page: Page;
-    readonly locators: JQueryDropdownLocators;
+    private readonly locators: JQueryDropdownLocators;
 
-    constructor(page: Page) {
 
-        this.page = page;
+    constructor(private page: Page) {
+
         this.locators = new JQueryDropdownLocators(page);
 
     }
 
-    async selectCountry(country: string): Promise<void> {
+
+    async selectCountry(country: string): Promise<string> {
 
         await this.locators.countryDropdown.click();
 
@@ -21,13 +22,18 @@ export class JQueryDropdownActions {
 
         await this.locators.countryOption(country).click();
 
-        await expect(this.locators.countryDropdown).toContainText(country);
+
+        return await this.locators.countryDropdown.textContent() ?? "";
 
     }
 
-    async selectStates(states: string[]): Promise<void> {
+
+
+    async selectStates(states: string[]): Promise<string[]> {
+
 
         await this.locators.stateDropdown.click();
+
 
         for (const state of states) {
 
@@ -37,28 +43,46 @@ export class JQueryDropdownActions {
 
         }
 
+
+        const selectedStates = await this.page
+            .locator('.select2-selection__choice')
+            .allTextContents();
+
+
+        return selectedStates.map(state => 
+            state.replace('×', '').trim()
+        );
+
     }
 
-    async selectEnabledCountry(country: string): Promise<void> {
+
+
+    async selectEnabledCountry(country: string): Promise<string> {
+
 
         await this.locators.disabledDropdown.click();
 
         await this.locators.countryOption(country).click();
 
-        await expect(this.locators.disabledDropdown)
-            .toContainText(country);
+
+        return await this.locators.disabledDropdown.textContent() ?? "";
 
     }
 
-    async selectCategory(category: string): Promise<void> {
 
-        await this.locators.categoryDropdown.selectOption({
-            label: category
-        });
 
-        await expect(this.locators.categoryDropdown)
-            .toHaveValue(await this.locators.categoryDropdown.inputValue());
+    async selectCategory(category: string): Promise<string> {
 
-    }
+
+    await this.locators.categoryDropdown.selectOption({
+        label: category
+    });
+
+
+    return await this.locators.categoryDropdown
+        .locator('option:checked')
+        .textContent() ?? "";
+
+}
 
 }

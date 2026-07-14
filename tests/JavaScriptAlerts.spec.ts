@@ -3,7 +3,7 @@ import { HomePageActions } from "../pages/HomePage/HomePage.actions";
 import { JavaScriptAlertsActions } from "../pages/JavaScriptAlerts/javaScriptAlerts.actions";
 
 
-test("JavaScript Alerts Demo", async ({ page }) => {
+test("should handle JavaScript alerts correctly", async ({ page }) => {
     const home = new HomePageActions(page);
     const jsAlerts = new JavaScriptAlertsActions(page);
 

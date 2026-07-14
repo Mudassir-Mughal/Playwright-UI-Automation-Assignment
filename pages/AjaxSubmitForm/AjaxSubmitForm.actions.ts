@@ -2,8 +2,8 @@ import { Page,expect } from '@playwright/test';
 import { AjaxSubmitFormLocators } from './AjaxSubmitForm.locators';
 
 export class AjaxSubmitFormActions {
-  readonly page: Page;
-  readonly locators: AjaxSubmitFormLocators;
+  private readonly page: Page;
+  private readonly locators: AjaxSubmitFormLocators;
 
   constructor(page: Page) {
     this.page = page;
@@ -28,13 +28,9 @@ export class AjaxSubmitFormActions {
     await this.clickSubmitButton();
   }
 
-  async getSubmitControlText(): Promise<string> {
-    const text = await this.locators.submitcontrol.textContent();
-    return (text ?? '').trim();
-  }
 
 
-async waitForSuccessMessage(): Promise<void> {
+async VerifySuccessMessage(): Promise<void> {
     await expect(this.locators.submitcontrol)
         .toContainText('submit');
 }

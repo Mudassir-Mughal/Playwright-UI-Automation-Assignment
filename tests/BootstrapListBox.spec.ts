@@ -1,10 +1,10 @@
 import { test } from "@playwright/test";
 import { HomePageActions } from "../pages/HomePage/HomePage.actions";
-import { bootstrapDualListDemoActions } from "../pages/BootstrapListBox/bootstrapListBox.actions";
+import { BootstrapDualListDemoActions } from "../pages/BootstrapListBox/bootstrapListBox.actions";
 
-test("Bootstrap Dual List Demo", async ({ page }) => {
+test("should move items between the bootstrap dual lists", async ({ page }) => {
   const home = new HomePageActions(page);
-  const bootstrap = new bootstrapDualListDemoActions(page);
+  const bootstrap = new BootstrapDualListDemoActions(page);
 
   await home.navigateToHomePage();
 
@@ -19,4 +19,3 @@ test("Bootstrap Dual List Demo", async ({ page }) => {
 });
 
 
-//for now passed all but not assertion apply

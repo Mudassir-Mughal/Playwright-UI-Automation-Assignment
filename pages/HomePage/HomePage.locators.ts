@@ -1,14 +1,14 @@
 import { Page, Locator } from '@playwright/test';
 
 export class HomePageLocators {
-  readonly page: Page;
+  private readonly page: Page;
 
-  readonly ajaxSubmitFormLink: Locator;
-  readonly bootstraplistbox: Locator;
-  readonly checkboxdemo: Locator;
-  readonly dragdropslides: Locator;
-  readonly javascriptalerts: Locator;
-  readonly jquerydropdown: Locator;
+  private readonly ajaxSubmitFormLink: Locator;
+  private readonly bootstraplistbox: Locator;
+  private readonly checkboxdemo: Locator;
+  private readonly dragdropslides: Locator;
+  private readonly javascriptalerts: Locator;
+  private readonly jquerydropdown: Locator;
 
   constructor(page: Page) {
     this.page = page;

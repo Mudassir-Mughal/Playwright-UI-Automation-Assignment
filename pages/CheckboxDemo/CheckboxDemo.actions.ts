@@ -2,8 +2,8 @@ import { Page, expect } from '@playwright/test';
 import { CheckboxDemoLocators } from './CheckboxDemo.locators';
 
 export class CheckboxActions {
-  readonly page: Page;
-  readonly locators: CheckboxDemoLocators;
+  private readonly page: Page;
+  private readonly locators: CheckboxDemoLocators;
 
   constructor(page: Page) {
     this.page = page;
@@ -44,4 +44,5 @@ export class CheckboxActions {
   async clickCheckAll() {
     await this.locators.checkAllButton.click();
   }
+
 }
